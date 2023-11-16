@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Movement Simulator</title>
+
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+        <!-- Bootstrap 3.3.7 -->
+        <link href="./assets/libs/bootstrap3/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!-- Font Awesome -->
+        <link href="./assets/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+        <!-- Ionicons -->
+        <link href="./assets/libs/ionicons/css/ionicons.min.css" rel="stylesheet" />
+
+        <!-- Sweet Alert -->
+        <link href="./assets/libs/bootstrap-swal/sweetalert.css" rel="stylesheet" />
+
+        <!-- Theme style -->
+        <link href="./assets/libs/AdminLTE/css/AdminLTE.min.css" rel="stylesheet" />
+
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+            folder instead of downloading all of them to reduce the load. -->
+        <link href="./assets/libs/AdminLTE/css/skins/_all-skins.min.css" rel="stylesheet" />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- Google Font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+        <!-- jQuery 3 -->
+        <script src="./assets/libs/jquery/jquery.min.js"></script>
+        <script src="./assets/js/common.js"></script>
+        <!--<script src="./assets/js/Home/include.js"></script>-->
+
+
+        <link href="./assets/libs/bootstrap3/css/bootstrap-theme.min.css" rel="stylesheet" />
+        <!-- Smart Wizard -->
+        <link href="./assets/libs/smartwizard/css/smart_wizard.min.css" rel="stylesheet" />
+        <link href="./assets/libs/smartwizard/css/smart_wizard_theme_arrows.min.css" rel="stylesheet" />
+        <link href="./assets/libs/smartwizard/css/smart_wizard_theme_circles.min.css" rel="stylesheet" />
+        <link href="./assets/libs/smartwizard/css/smart_wizard_theme_dots.min.css" rel="stylesheet" />
+
+        <!-- Select2 -->
+        <link href="./assets/libs/select2/css/select2.min.css" rel="stylesheet" />
+
+        <!-- DataTables -->
+        <link href="./assets/libs/datatables_bootstrap3/datatables.min.css" rel="stylesheet" />
+        <link href="./assets/libs/icheck/skins/all.css" rel="stylesheet" />
+
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini fixed sidebar-collapse">
+        <div class="wrapper">
+            <header class="main-header">
+
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"></span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg"><b>Movement Model</b></span>
+                </a>
+
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+
+                </nav>
+            </header>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+
+                <div class="box box-info">
+                    <form id="ModelForm">
+                        <!-- SmartWizard html -->
+                        <div id="smartwizard">
+                            <ul>
+                                <li><a href="#step-1">Main Data</a></li>
+                                <li><a href="#step-2">Periods</a></li>
+                                <li><a href="#step-3">Area</a></li>
+                            </ul>
+                            <div>
+
+                                <div id="step-1" class="form-group">
+                                    <div id="form-step-0" role="form" data-toggle="validator" class="box-body">
+                                        <!-- CaseName -->
+                                        <div class="form-group">
+
+                                            <label for="CaseName" class="col-sm-2">Case Name:</label>
+
+                                            <div class="input-group col-sm-10">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-file-text-o fa-fw"></i>
+                                                </div>
+                                                <input required type="text" class="form-control" id="CaseName">
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+                                        <!-- /.form group CaseName-->
+
+                                        <!-- /.input group -->
+                                        <!-- NumberOfPersons -->
+                                        <div class="form-group">
+
+                                            <label for="NumberOfPersons" class="col-sm-2">Total count of people:</label>
+
+                                            <div class="input-group col-sm-10">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-users fa-fw"></i>
+                                                </div>
+                                                <input required type="text" class="form-control" data-inputmask="'alias': 'integer', 'rightAlign':false" data-mask id="NumberOfPersons">
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+                                        <!-- /.form group NumberOfPersons-->
+
+                                        <!-- /.form group SouthEast-->
+                                        <!-- GroupsCount -->
+                                        <div class="form-group">
+                                            <label for="GroupsCount" class="col-sm-2">Number Of Groups:</label>
+                                            <div class="input-group col-sm-10">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-puzzle-piece fa-fw"></i>
+                                                </div>
+                                                <input required type="text" class="form-control" data-inputmask="'alias': 'integer', 'rightAlign':false" data-mask id="GroupsCount" onblur="BuildPeriodsTable()">
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+
+                                        <!-- TimeInSeconds -->
+                                        <div class="form-group">
+
+                                            <label for="TimeInSeconds" class="col-sm-2">Time in seconds:</label>
+
+                                            <div class="input-group col-sm-10">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o fa-fw"></i>
+                                                </div>
+                                                <input required type="text" class="form-control" data-inputmask="'alias': 'integer', 'rightAlign':false" data-mask id="TimeInSeconds">
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+
+
+                                        <!-- NumberOfPeriods -->
+                                        <div class="form-group">
+                                            <label for="NumberOfPeriods" class="col-sm-2">Number Of Periods:</label>
+                                            <div class="input-group col-sm-10">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-puzzle-piece fa-fw"></i>
+                                                </div>
+                                                <input required type="text" class="form-control" data-inputmask="'alias': 'integer', 'rightAlign':false" data-mask id="NumberOfPeriods" onblur="BuildPeriodsTable()">
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+
+
+                                        <!-- /.form group Area-->
+                                    </div>
+                                </div>
+
+                                <div id="step-2" class="form-group">
+                                    <div id="form-step-1" role="form" data-toggle="validator" class="box-body">
+                                        <table id="PeriodsTable" class="display table table-bordered table-striped table-hover"></table>
+                                    </div>
+                                </div>
+
+                                <div id="step-3" class="form-group">
+                                    <div id="form-step-3" role="form" data-toggle="validator" class="box-body">
+                                        <div id="locationMap" style="height:400px"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab">Data Table</a></li>
+                        <li><a href="#tab_2" data-toggle="tab">Map View</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <div class="box box-info">
+                                <table id="ResultsTable" class="display table table-bordered table-striped table-hover"></table>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="tab_2">
+                            <div class="row">
+                                <input type="button" value="Start" class="col-sm-2 btn btn-success" onclick="doAnimate()" />
+                                <div class="col-sm-10"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12" id="divMap" style="height:400px"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+                <!--@RenderBody()-->
+            </div>
+
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.4.0
+                </div>
+                <strong>Copyright &copy; 2017-2022 <a href="/">whoever</a>.</strong> All rights reserved.
+            </footer>
+
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+
+                    <!-- Sidebar user panel -->
+                    <!--
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="/assets/libs/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p><span class="hidden-xs" id="username3"></span></p>
+                        </div>
+                    </div>-->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+
+                    <ul class="sidebar-menu" data-widget="tree">
+                        <li class="header">MAIN NAVIGATION</li>
+
+
+                        <li>
+                            <a onclick="load()" href="javascript:void(0);">
+                                <i class="fa fa-upload"></i><span>Load Case</span>
+                                <span class="pull-right-container"></span>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a onclick="save()" href="javascript:void(0);">
+                                <i class="fa fa-download">
+                        </i>
+                                <span>Save Case</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+        </div>
+
+        <!-- Page Scripts -->
+        <script src="./assets/libs/bootstrap-validator/validator.min.js"></script>
+        <script src="./assets/libs/smartwizard/js/jquery.smartWizard.min.js"></script>
+        <!-- InputMask -->
+        <script src="./assets/libs/input-mask/jquery.inputmask.bundle.min.js"></script>
+        <!-- Select2 -->
+        <script src="./assets/libs/select2/js/select2.full.min.js"></script>
+        <script src="./assets/libs/moment/moment.min.js"></script>
+
+        <!-- DataTables -->
+        <script src="./assets/libs/datatables_bootstrap3/datatables.min.js"></script>
+
+        <script src="./assets/js/Home/Index.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsSAfr0i3nG4GACxuYf2ys01hfyhvaaDA&libraries=drawing,geometry&callback=initMap" async defer>
+        </script>
+
+        <!-- jQuery UI 1.11.4 -->
+        <script src="./assets/libs/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+            $.widget.bridge('uibutton', $.ui.button);
+        </script>
+        <!-- Bootstrap 3.3.7 -->
+        <script src="./assets/libs/bootstrap3/js/bootstrap.min.js"></script>
+
+        <!-- Slimscroll -->
+        <script src="./assets/libs/slimscroll/jquery.slimscroll.min.js"></script>
+
+        <!-- AdminLTE App -->
+        <script src="./assets/libs/AdminLTE/js/adminlte.min.js"></script>
+
+        <!-- Sweet Alert -->
+        <script src="./assets/libs/bootstrap-swal/sweetalert.min.js"></script>
+
+        <script src="./assets/js/loadingoverlay/loadingoverlay.min.js"></script>
+
+
+    </body>
+
+</html>
